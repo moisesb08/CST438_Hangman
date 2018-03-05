@@ -10,8 +10,8 @@ const ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const MAX_STATE = 7;
 var won, correct, incorrect, words, word, masked, state, started;
 
-function getTextAndBegin(saveToWords){
-    // read text from resources
+function getTextAndPrepare(saveToWords){
+    // read text from resources and 
     var request = new XMLHttpRequest();
     request.open('GET', 'resources/hangmanwords.txt', true);
     request.send(null);
@@ -25,25 +25,20 @@ function getTextAndBegin(saveToWords){
     }
 }
 
-// call getTextAndBegin which calls begin function
-getTextAndBegin(function (text) {
+// call getTextAndPrepare which has a callback function to prepare game
+getTextAndPrepare(function (text) {
     // Create array of words
     words = text.split('\n');
 
-    // Prepare game
-    prepare();
-});
-
-function prepare()
-{
+    // -- Prepare game -- 
     // Add listeners for buttons
     document.getElementById("newGameBtn").addEventListener('click', (event) =>{
        begin();
     });
 
-    //
+    // Hide guesses table
     document.getElementById("guesses").style.display = 'none';
-}
+});
 
 function begin()
 {   // default values
@@ -54,13 +49,14 @@ function begin()
     won = false;
 
     // Chose random word
-    // word = "COMPUTER";
+    //word = "COMPUTER" //Task 1;
     word = words[Math.floor(Math.random()*words.length)].trim().toUpperCase();
-    console.log(word);
     
     // Create underscores based on word
     masked = word.replace(/[A-Z]/ig, "_ ");
-    console.log(masked);
+    
+    // Make changes to document
+    document.getElementById("hangmanPic").src = "resources/images/state1.png";
     document.getElementById("correct").innerHTML = " ";
     document.getElementById("incorrect").innerHTML = " ";
     document.getElementById("newGameBtn").style.display = 'none';
@@ -73,18 +69,17 @@ function begin()
 
 // Get user guess
 document.addEventListener('keypress', (event) =>{
-    if(state===MAX_STATE || won)
+    // Return if game is finished
+    if(state === MAX_STATE || won)
         return;
     document.getElementById("message").innerHTML = " ";
     var userLetter = String.fromCharCode(event.charCode);
     document.getElementById("selected").innerHTML = userLetter.toUpperCase();
-    console.log(userLetter);
 
     // Check if guess is in A-Z
     if(ALPHA.indexOf(userLetter.toUpperCase()) < 0)
     {
         document.getElementById("message").innerHTML = "*** Enter letters A-Z ***";
-        console.log("Enter letters A-Z");
         return;
     }
 
@@ -93,7 +88,6 @@ document.addEventListener('keypress', (event) =>{
         || correct.indexOf(userLetter.toUpperCase()) > -1)
     {
         document.getElementById("message").innerHTML = "*** You already guessed '" + userLetter.toUpperCase() +"' ***";
-        console.log("*** You already guessed '" + userLetter.toUpperCase() +"' ***");
     }
     else if(word.toUpperCase().indexOf(userLetter.toUpperCase())>-1)
     {
@@ -110,18 +104,16 @@ document.addEventListener('keypress', (event) =>{
             if(masked[2*i] === '_')
                 done = false;
         }
-        if(done === true)
+        if(done)
             win();
         correct+=userLetter.toUpperCase();
         document.getElementById("correct").innerHTML = correct;
-        console.log("correct: " + correct);
     }
     else
     {
         // incorrect - append to incorrect
         incorrect+=userLetter.toUpperCase();
         document.getElementById("incorrect").innerHTML = incorrect;
-        console.log("incorrect: " + incorrect);
         state++;
         document.getElementById("hangmanPic").src = "resources/images/state" + state + ".png";
 
@@ -140,6 +132,7 @@ document.addEventListener('keypress', (event) =>{
     }
 });
 
+// Display win message and show new game button
 function win()
 {
     document.getElementById("message").innerHTML = " ";
