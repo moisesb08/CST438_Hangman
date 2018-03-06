@@ -9,6 +9,7 @@ h1 {
 	text-transform: uppercase;
 	text-align:center;
 	font-size: 80px;
+	font-size: 8vw;
 	font-weight:900;
 	color: black;
   	-webkit-text-fill-color: greenyellow;
@@ -20,7 +21,7 @@ h1 {
 
 #selected {
 	font-size: 40px;
-	font-size: 4vw;
+	font-size: 3vw;
 }
 
 #textInput{
@@ -38,6 +39,7 @@ h2, #textInput {
 	-webkit-text-fill-color: greenyellow;
   	-webkit-text-stroke-width: 1px;
   	-webkit-text-stroke-color: black;
+	margin: 0;
 }
 
 #incorrect{
@@ -59,7 +61,7 @@ html body {
 }
 
 #hangmanPic {
-	width: 60%;
+	width: 50%;
 	height:auto;
 }
 
@@ -78,7 +80,7 @@ html body {
 
 #Word h3 {
 	font-size: 20px;
-    font-size: 3vw;
+    font-size: 2vw;
 	text-align: center;
 }
 
@@ -86,6 +88,7 @@ html body {
 	border: 1px solid black;
 	text-align: center;
 	padding: 0px;
+	margin: 0;
 }
 
 #guesses {
