@@ -2,7 +2,7 @@
 * Title: hangman.js
 * Abstract: Javascript file for running hangman game
 * Author: Moises Bernal
-* Date: 3-5-2018
+* Date: 3-6-2018
 */
 
 // Global variables
@@ -33,11 +33,23 @@ getTextAndPrepare(function (text) {
 
     // Add listeners for buttons
     document.getElementById("newGameBtn").addEventListener('click', (event) =>{
+       console.log("hello");
        begin();
     });
 
-    // Hide guesses table
-    //document.getElementById("guesses").style.display = 'none';
+    // Get user guess
+    document.getElementById("submitBtn").addEventListener('click', (event) =>{
+        checkGuess();
+    });
+
+    // Execute a function when the user releases a key on the keyboard
+    document.getElementById("textInput").addEventListener("keyup", function(event) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("submitBtn").click();
+        }
+    });
 });
 
 function begin()
@@ -60,22 +72,29 @@ function begin()
     document.getElementById("correct").innerHTML = " ";
     document.getElementById("incorrect").innerHTML = " ";
     document.getElementById("newGameBtn").style.display = 'none';
+    document.getElementById("textInput").style.display = '';
+    document.getElementById("submitBtn").style.display = '';
     document.getElementById("masked").innerHTML = masked;
     document.getElementById("selected").innerHTML = " ";
-    document.getElementById("selectedTitle").innerHTML = '*** Use your keyboard to type the letter you select ***';
+    document.getElementById("selectedTitle").innerHTML = 'Enter the letter you select.';
     document.getElementById("guesses").style.display = 'table';
     document.getElementById("guess").innerHTML = 'Guesses left: ' + (MAX_STATE-state);
+    document.getElementById("textInput").focus();
+
+    //document.addEventListener();
 }
 
-// Get user guess
-document.addEventListener('keypress', (event) =>{
+function checkGuess(event)
+{
     // Return if game is finished
-    if(state === MAX_STATE || won)
+    var userLetter = document.getElementById("textInput").value;
+    if(state === MAX_STATE || won || userLetter == "")
         return;
     document.getElementById("selectedTitle").innerHTML = 'Selected: ';
     document.getElementById("message").innerHTML = " ";
-    var userLetter = String.fromCharCode(event.charCode);
     document.getElementById("selected").innerHTML = userLetter.toUpperCase();
+    document.getElementById("textInput").value = "";
+    document.getElementById("textInput").focus();
 
     // Check if guess is in A-Z
     if(ALPHA.indexOf(userLetter.toUpperCase()) < 0)
@@ -105,6 +124,7 @@ document.addEventListener('keypress', (event) =>{
             if(masked[2*i] === '_')
                 done = false;
         }
+        // check if user won
         if(done)
             win();
         correct+=userLetter.toUpperCase();
@@ -118,28 +138,35 @@ document.addEventListener('keypress', (event) =>{
         state++;
         document.getElementById("hangmanPic").src = "resources/images/state" + state + ".png";
 
-        // check if game ends
+        // check if player loses
         if(state === MAX_STATE)
-        {
-            document.getElementById("message").innerHTML = " ";
-            document.getElementById("selected").innerHTML = " ";
-            document.getElementById("selectedTitle").innerHTML = 'You lose! The word is '
-                + word.toUpperCase() + '.';
-            document.getElementById("guess").innerHTML = ' ';
-            document.getElementById("newGameBtn").style.display = 'inline';
-        }
+            lose();
         else
             document.getElementById("guess").innerHTML = 'Guesses left: ' + (MAX_STATE-state);
     }
-});
+}
+
+function lose()
+{
+    document.getElementById("message").innerHTML = " ";
+    document.getElementById("selected").innerHTML = " ";
+    document.getElementById("selectedTitle").innerHTML = 'You lose! The word is '
+        + word.toUpperCase() + '.';
+    document.getElementById("guess").innerHTML = ' ';
+    document.getElementById("newGameBtn").style.display = 'inline';
+    document.getElementById("textInput").style.display = 'none';
+    document.getElementById("submitBtn").style.display = 'none';
+}
 
 // Display win message and show new game button
 function win()
 {
     document.getElementById("message").innerHTML = " ";
     document.getElementById("selectedTitle").innerHTML = " ";
-    document.getElementById("selected").innerHTML = 'Congratulations, YOU WIN!';
+    document.getElementById("selected").innerHTML = 'Congrats,\nYOU WIN!';
     document.getElementById("guess").innerHTML = ' ';
     document.getElementById("newGameBtn").style.display = 'inline';
+    document.getElementById("textInput").style.display = 'none';
+    document.getElementById("submitBtn").style.display = 'none';
     won = true;
 }

@@ -2,7 +2,7 @@
 <!-- Title: index.html
      Abstract: HTML file for displaying hangman game
      Author: Moises Bernal
-     Date: 3-5-2018 -->
+     Date: 3-6-2018 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -38,25 +38,30 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3">
-                <button id="newGameBtn">New Game</button>
-                <h3 id="selectedTitle"></h3>
+            <td colspan="2">
+                <h5 id="selectedTitle"></h5>
                 <h1 id="selected"></h1>
+            </td>
+            <td colspan="1">
+                <button id="newGameBtn">New Game</button>
+                <input id="textInput" maxlength="1" style="display: none"><br>
+                <button id="submitBtn" style="display: none">Submit</button>
             </td>
             <td id=picCell colspan="2" rowspan="2">
                 <img id="hangmanPic" src="/resources/images/state1.png"/>
             </td>
         </tr>
         <tr>
-            <td colspan="3">
+            <td colspan="2">
             <h3 id="masked">
             </h3>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td colspan="5">
-            <h3 id="guess">
-            </h3>
+            <h5 id="guess">
+            </h5>
             </td>
         </tr>
         </table>
