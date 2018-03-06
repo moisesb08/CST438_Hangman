@@ -2,7 +2,7 @@
 <!-- Title: index.html
      Abstract: HTML file for displaying hangman game
      Author: Moises Bernal
-     Date: 3-4-2018 -->
+     Date: 3-5-2018 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -24,51 +24,53 @@
 <body>
 <script src="/js/hangman.js">
 </script>
-<h1><img src="/resources/images/leaning.png" alt="leaning" width="50px" height="50px">Hangman</h1>
-<div id="Word">
-    <table id='topTable'>
-    <tr>
-        <td colspan="5"><h4>by Moises Bernal</h4></td>
-    </tr>
-    <tr>
-        <td colspan="5">
-        <h4 id="message">
-        </h4>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <button id="newGameBtn">New Game</button>
-            <h3 id="selectedTitle"></h3>
-            <h1 id="selected"></h1>
-        </td>
-        <td id=picCell colspan="2" rowspan="2">
-            <img id="hangmanPic" src="/resources/images/state1.png"/>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-        <h3 id="masked">
-        </h3>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="5">
-        <h3 id="guess">
-        </h3>
-        </td>
-    </tr>
+<div id="box">
+    <h1><img src="/resources/images/leaning.png" alt="leaning" width="50px" height="50px">Hangman</h1>
+    <div id="Word">
+        <table id='topTable'>
+        <tr>
+            <td colspan="5"><h4>by Moises Bernal</h4></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <h4 id="message">
+            </h4>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button id="newGameBtn">New Game</button>
+                <h3 id="selectedTitle"></h3>
+                <h1 id="selected"></h1>
+            </td>
+            <td id=picCell colspan="2" rowspan="2">
+                <img id="hangmanPic" src="/resources/images/state1.png"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+            <h3 id="masked">
+            </h3>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <h3 id="guess">
+            </h3>
+            </td>
+        </tr>
+        </table>
+    </div>
+    <table id="guesses">
+        <tr>
+            <td> <h4>Correct Guesses</h4></td>
+            <td> <h4>Incorrect Guesses</h4></td>
+        </tr>
+        <tr>
+            <td><h2 id="correct">  </h2></td>
+            <td><h2 id="incorrect">  </h2></td>
+        </tr>
     </table>
 </div>
-<table id="guesses">
-    <tr>
-        <td> <h4>Correct Guesses</h4></td>
-        <td> <h4>Incorrect Guesses</h4></td>
-    </tr>
-    <tr>
-        <td><h2 id="correct">  </h2></td>
-        <td><h2 id="incorrect">  </h2></td>
-    </tr>
-</table>
 </body>
 </html>

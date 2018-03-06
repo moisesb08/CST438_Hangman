@@ -2,7 +2,7 @@
 * Title: hangman.js
 * Abstract: Javascript file for running hangman game
 * Author: Moises Bernal
-* Date: 3-4-2018
+* Date: 3-5-2018
 */
 
 // Global variables
@@ -27,10 +27,10 @@ function getTextAndPrepare(saveToWords){
 
 // call getTextAndPrepare which has a callback function to prepare game
 getTextAndPrepare(function (text) {
+    // -- Prepare game -- 
     // Create array of words
     words = text.split('\n');
 
-    // -- Prepare game -- 
     // Add listeners for buttons
     document.getElementById("newGameBtn").addEventListener('click', (event) =>{
        begin();
