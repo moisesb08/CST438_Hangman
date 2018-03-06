@@ -37,7 +37,7 @@ getTextAndPrepare(function (text) {
     });
 
     // Hide guesses table
-    document.getElementById("guesses").style.display = 'none';
+    //document.getElementById("guesses").style.display = 'none';
 });
 
 function begin()

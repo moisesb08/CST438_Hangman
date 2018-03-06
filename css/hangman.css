@@ -58,6 +58,10 @@ html body {
     text-align: center;
 }
 
+#ILP {
+	text-align: center;
+}
+
 #Word h3 {
     font-size: 20px;
     text-align: center;
@@ -96,4 +100,5 @@ td, th {
     width: 90%;
 	height: 90%;
 	margin:0px auto;
+	padding-bottom: 50px;
 }
