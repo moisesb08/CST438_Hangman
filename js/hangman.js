@@ -62,7 +62,7 @@ function begin()
     document.getElementById("newGameBtn").style.display = 'none';
     document.getElementById("masked").innerHTML = masked;
     document.getElementById("selected").innerHTML = " ";
-    document.getElementById("selectedTitle").innerHTML = 'Selected:';
+    document.getElementById("selectedTitle").innerHTML = '*** Use your keyboard to type the letter you select ***';
     document.getElementById("guesses").style.display = 'table';
     document.getElementById("guess").innerHTML = 'Guesses left: ' + (MAX_STATE-state);
 }
@@ -72,6 +72,7 @@ document.addEventListener('keypress', (event) =>{
     // Return if game is finished
     if(state === MAX_STATE || won)
         return;
+    document.getElementById("selectedTitle").innerHTML = 'Selected: ';
     document.getElementById("message").innerHTML = " ";
     var userLetter = String.fromCharCode(event.charCode);
     document.getElementById("selected").innerHTML = userLetter.toUpperCase();
