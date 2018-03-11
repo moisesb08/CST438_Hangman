@@ -6,7 +6,7 @@
 */
 var http = require('http');
 var fs = require('fs');
-const PORT=3001; 
+const PORT=3000; 
 
 var server = http.createServer(function(req, res){
 
